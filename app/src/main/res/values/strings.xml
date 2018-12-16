@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">REUNITEApp</string>
+    <string name="message_board_title"><![CDATA[guava<b>mangos</b>]]></string>
+    <string name="message_board_scan_tag_info"><![CDATA[<b>Scan your RFID Tag on \nthe scanner below the display.</b]]></string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
