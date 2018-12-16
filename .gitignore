@@ -1,3 +1,6 @@
+# .gitignore for
+
+
 # Built application files
 *.apk
 *.ap_
@@ -52,7 +55,7 @@ captures/
 .externalNativeBuild
 
 # Google Services (e.g. APIs or Firebase)
-google-services.json
+/google-services.json
 
 # Freeline
 freeline.py
@@ -65,3 +68,14 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+*.iml
+.gradle
+/local.properties
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
