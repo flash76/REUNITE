@@ -1,6 +1,0 @@
-version: "Apple Swift version 4.2.1 (swiftlang-1000.11.42 clang-1000.11.45.1)"
-options: "2d269008321c0dce6a4360400783cd35"
-build_time: [1544988647, 299853000]
-inputs:
-  "/Users/Varun/Documents/GitHub/REUNITE/REUNITE/REUNITE/ViewController.swift": [1544988643, 0]
-  "/Users/Varun/Documents/GitHub/REUNITE/REUNITE/REUNITE/AppDelegate.swift": [1544988643, 0]
