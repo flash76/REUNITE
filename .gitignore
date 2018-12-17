@@ -138,3 +138,4 @@ local.properties
 */fastlane/Preview.html
 */fastlane/screenshots/**/*.png
 */fastlane/test_output
+.DS_Store
