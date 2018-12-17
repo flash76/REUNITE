@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "65D2A0EDC9704E0889FD707A3D7386858090C95C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "65D2A0EDC9704E0889FD707A3D7386858090C95C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2B7626D4-BD5C-45A5-A2FA-C95A9937D058",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "65D2A0EDC9704E0889FD707A3D7386858090C95C" : "REUNITE\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "REUNITE",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "REUNITE\/REUNITE.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/flash76\/REUNITE.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "65D2A0EDC9704E0889FD707A3D7386858090C95C"
+    }
+  ]
+}
