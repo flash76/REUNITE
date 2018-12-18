@@ -139,3 +139,5 @@ local.properties
 */fastlane/screenshots/**/*.png
 */fastlane/test_output
 .DS_Store
+.idea/encodings.xml
+.idea/workspace.xml
