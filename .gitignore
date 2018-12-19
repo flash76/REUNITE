@@ -141,3 +141,5 @@ local.properties
 .DS_Store
 .idea/encodings.xml
 .idea/workspace.xml
+kiosk/.idea/misc.xml
+kiosk/.idea/workspace.xml

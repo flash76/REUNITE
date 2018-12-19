@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.text.Html;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 /**
  * Skeleton of an Android Things activity.
  * <p>
@@ -26,15 +29,24 @@ import android.widget.TextView;
  */
 public class MessageBoardActivity extends Activity {
 
+    private Calendar calendar = Calendar.getInstance(Locale.getDefault());
+    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+    int minute = calendar.get(Calendar.MINUTE);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_board);
 
+        // Find our widgets
         TextView messageBoardTitle = findViewById(R.id.messageBoardTitle);
         TextView messageBoardScanTagInfo = findViewById(R.id.messageBoardScanTagInfo);
+        TextView messageBoardTime = findViewById(R.id.messageBoardTime);
 
+        // Set text
         messageBoardTitle.setText(Html.fromHtml(getString(R.string.message_board_title)));
         messageBoardScanTagInfo.setText(Html.fromHtml(getString(R.string.message_board_scan_tag_info)));
+
+        messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour, minute)));
     }
 }
