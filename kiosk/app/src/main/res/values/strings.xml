@@ -1,6 +1,25 @@
 <resources>
     <string name="app_name">REUNITEApp</string>
-    <string name="message_board_title"><![CDATA[guava<b>mangos</b>]]></string>
-    <string name="message_board_scan_tag_info"><![CDATA[<b>Scan your RFID Tag on \nthe scanner below the display.</b]]></string>
+    <string name="guavalogo"><![CDATA[guava<b>mangos</b>]]></string>
+    <string name="message_board_scan_tag_info"><![CDATA[<b>Scan your RFID tag on \nthe scanner below the display.</b]]></string>
     <string name="message_board_time"><![CDATA[%1$d:<b>%2$d</b>]]></string>
+    <string name="message_board_date"><![CDATA[%1$s, %2$s %3$d, %4$d]]></string>
+    <string name="news_news_news">NEWS NEWS NEWS NEWSNEWSNEWS\n
+        NEWS NEWS NEWS NEWSNEWSNEWS\n
+        NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n
+        NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n
+        NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n
+        NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS
+        NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  NEWS NEWS NEWS NEWSNEWSNEWS\n  </string>
+    <string-array name="profile_creator_welcome_messages">
+        <item>Hello.</item>
+        <item>How are you doing?</item>
+        <item>Let\'s find them.</item>
+        <item>Let\'s get you set up.</item>
+        <item>We\'ll help you.</item>
+        <item>Welcome.</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
