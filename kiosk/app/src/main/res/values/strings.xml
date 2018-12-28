@@ -3,6 +3,7 @@
     <string name="guavalogo"><![CDATA[guava<b>mangos</b>]]></string>
     <string name="message_board_scan_tag_info"><![CDATA[<b>Scan your RFID tag on \nthe scanner below the display.</b]]></string>
     <string name="message_board_time"><![CDATA[%1$d:<b>%2$d</b>]]></string>
+    <string name="message_board_time_00_minute"><![CDATA[%1$d:<b>00</b>]]></string>
     <string name="message_board_date"><![CDATA[%1$s, %2$s %3$d, %4$d]]></string>
     <string name="news_news_news">NEWS NEWS NEWS NEWSNEWSNEWS\n
         NEWS NEWS NEWS NEWSNEWSNEWS\n
@@ -22,4 +23,5 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_creator_person_info_title_info">First, let\'s enter some basic information.</string>
 </resources>

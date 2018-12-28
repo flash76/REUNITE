@@ -1,7 +1,9 @@
 package guavamangos.reuniteapp;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.widget.TextView;
 
@@ -26,7 +28,7 @@ import java.util.Random;
  *
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
-public class ProfileCreatorActivity extends Activity {
+public class ProfileCreatorActivity extends AppCompatActivity implements ProfileCreatorPersonInfo.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,10 @@ public class ProfileCreatorActivity extends Activity {
         // TODO: Write data to RFID tag...
 
         // Data that will be written
-        byte[] newData = {0x0F,0x0E,0x0D,0x0C,0x0B,0x0A,0x09,0x08,0x07,0x06,0x05,0x04,0x03,0x02,0x01,0x00};
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

@@ -9,6 +9,7 @@
 
     <application>
 
+
         <!-- We have android:required="false" so we can test an a standard Android Emulator -->
         <uses-library
                 android:name="com.google.android.things"
@@ -16,8 +17,7 @@
 
         <activity
                 android:name=".MessageBoardActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme">
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileCreatorActivity">
+        <activity android:name=".ProfileCreatorActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

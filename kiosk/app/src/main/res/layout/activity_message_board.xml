@@ -19,7 +19,8 @@
             android:fontFamily="@font/varela"
             android:id="@+id/messageBoardLogo"
             android:textSize="18sp"
-            android:text="Placeholder"/>
+            android:text="Placeholder"
+            android:textColor="@android:color/background_light"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -37,7 +38,8 @@
             app:layout_constraintVertical_bias="0.998"
             android:textAlignment="textEnd"
             android:maxLines="5"
-            android:text="Scan Message"/>
+            android:text="Scan Message"
+            android:textColor="@android:color/background_light"/>
 
 
 
@@ -70,7 +72,8 @@
                     android:id="@+id/messageBoardNewsLabels"
                     android:textAlignment="center"
                     android:layout_gravity="center"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textColor="@android:color/background_light"/>
         </LinearLayout>
     </ScrollView>
 
@@ -90,7 +93,8 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintVertical_bias="0.028"
-            android:text="Hello."/>
+            android:text="The time"
+            android:textColor="@android:color/background_light"/>
 
     <TextView
             android:text="Date"
@@ -106,7 +110,8 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/varela"/>
+            android:fontFamily="@font/varela"
+            android:textColor="@android:color/background_light"/>
 
     <ImageView
             android:layout_width="30dp"
@@ -140,6 +145,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.299"/>
+            app:layout_constraintVertical_bias="0.299"
+            android:textColor="@android:color/background_light"/>
 
 </android.support.constraint.ConstraintLayout>

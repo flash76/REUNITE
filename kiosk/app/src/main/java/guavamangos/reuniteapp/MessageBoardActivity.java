@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
+
 import com.galarzaa.androidthings.Rc522;
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.PeripheralManager;
@@ -64,7 +65,7 @@ public class MessageBoardActivity extends Activity {
     private double temperature = 0.0;
 
     private final String API_KEY = "AccuWeather API Key Here";
-    private String IP_ADDRESS = getIP();
+    private static String IP_ADDRESS;
     private final String GET_LOCATION_KEY_FROM_IP = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=%1$s&q=%2$d";
 
     private Rc522 mRc522;
@@ -74,6 +75,8 @@ public class MessageBoardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        IP_ADDRESS = getIP();
 
         PeripheralManager pioService = PeripheralManager.getInstance();
 
@@ -87,7 +90,7 @@ public class MessageBoardActivity extends Activity {
             e.printStackTrace();
         }
 
-        // Some weird bug screws up the value if it is set while being created as an instance variable
+
         minute = calendar.get(Calendar.MINUTE);
 
         // Find our widgets
@@ -104,11 +107,29 @@ public class MessageBoardActivity extends Activity {
 
         messageBoardTime.setText("LALALALA");
 
+        if (minute > 0 && minute < 10) {
+            int tmp = minute;
+            int[] newMinute = new int[2];
+            newMinute[0] = 0;
+            newMinute[1] = tmp;
+
+            String formattedMinute = String.format("%1$d%2$d", newMinute[0], newMinute[1]);
+        }
+
         if (hour >= 13) {
-            messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour - 12, minute)));
+            if (minute == 0) {
+                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_00_minute, hour - 12)));
+            } else {
+                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour - 12, minute)));
+            }
             messageBoardTime.append(" pm");
         } else {
-            messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour, minute)));
+            if (minute == 0) {
+                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_00_minute, hour)));
+            } else {
+                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour, minute)));
+
+            }
             messageBoardTime.append(" am");
         }
 
@@ -135,14 +156,14 @@ public class MessageBoardActivity extends Activity {
         }
     }
 
-    private void readRFid(){
-        while(true){
+    private void readRFid() {
+        while (true) {
             boolean success = mRc522.request();
-            if(!success){
+            if (!success) {
                 continue;
             }
             success = mRc522.antiCollisionDetect();
-            if(!success){
+            if (!success) {
                 continue;
             }
             byte[] uid = mRc522.getUid();
@@ -150,7 +171,7 @@ public class MessageBoardActivity extends Activity {
             break;
         }
         // Factory Key A:
-        byte[] key = {(byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF};
+        byte[] key = {(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF};
         // Get the address of the desired block
         byte block = Rc522.getBlockAddress(3, 2);
         //We need to authenticate the card, each sector can have a different key
@@ -163,7 +184,7 @@ public class MessageBoardActivity extends Activity {
         final byte[] buffer = new byte[16];
         //Since we're still using the same block, we don't need to authenticate again
         result = mRc522.readBlock(block, buffer);
-        if(!result){
+        if (!result) {
             //Could not read card
             showDialog(MessageBoardActivity.this, "Uh oh...", "Your ID card could not be read. \n Try re-scanning, and see if that works.",
                     "OK", null, new DialogInterface.OnClickListener() {
@@ -177,13 +198,9 @@ public class MessageBoardActivity extends Activity {
 
         } else {
             for (int i = 0; i <= 15; i++) {
-                if (buffer[i] == 0) {
-                    cardReadData = true;
-                } else if (buffer[i] != 0) {
-                    cardReadData = false;
-                }
+                cardReadData = buffer[i] == 0;
             }
-            if (!cardReadData) {
+            if (cardReadData) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
