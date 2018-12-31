@@ -13,12 +13,21 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.util.Log;
+import android.view.textclassifier.TextLinks;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
@@ -64,13 +73,17 @@ public class MessageBoardActivity extends Activity {
 
     private double temperature = 0.0;
 
-    private final String API_KEY = "AccuWeather API Key Here";
+    private final String API_KEY = "PRUizIh6duRN7AFgCGfUZ55HME8gpKEz";
     private static String IP_ADDRESS;
-    private final String GET_LOCATION_KEY_FROM_IP = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=%1$s&q=%2$d";
+    private final String GET_LOCATION_KEY_FROM_IP_URL = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=%1$s&q=%2$s";
+    private final String GET_WEATHER_DESCRIPTION_URL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/%1$d?apikey=%2$s";
 
     private Rc522 mRc522;
 
     private boolean cardReadData = false;
+
+    private String formattedMinute;
+    private int locationKey = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +108,8 @@ public class MessageBoardActivity extends Activity {
 
         // Find our widgets
         TextView messageBoardLogo = findViewById(R.id.messageBoardLogo);
-        TextView messageBoardScanTagInfo = findViewById(R.id.messageBoardScanTagInfo);
-        TextView messageBoardTime = (TextView) findViewById(R.id.messageBoardTime);
+        final TextView messageBoardScanTagInfo = findViewById(R.id.messageBoardScanTagInfo);
+        final TextView messageBoardTime = findViewById(R.id.messageBoardTime);
         TextView messageBoardDate = findViewById(R.id.messageBoardDate);
 
         // Set text
@@ -113,21 +126,21 @@ public class MessageBoardActivity extends Activity {
             newMinute[0] = 0;
             newMinute[1] = tmp;
 
-            String formattedMinute = String.format("%1$d%2$d", newMinute[0], newMinute[1]);
+            formattedMinute = String.format(Locale.getDefault(), "%1$d %2$d", newMinute[0], newMinute[1]);
         }
 
         if (hour >= 13) {
             if (minute == 0) {
                 messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_00_minute, hour - 12)));
             } else {
-                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour - 12, minute)));
+                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_string_minute, hour - 12, formattedMinute)));
             }
             messageBoardTime.append(" pm");
         } else {
             if (minute == 0) {
                 messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_00_minute, hour)));
             } else {
-                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour, minute)));
+                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_string_minute, hour, formattedMinute)));
 
             }
             messageBoardTime.append(" am");
@@ -139,21 +152,52 @@ public class MessageBoardActivity extends Activity {
 
         // Send a GET request to retrieve weather data from AccuWeather
         RequestQueue queue = Volley.newRequestQueue(this);
+        String url = String.format(GET_LOCATION_KEY_FROM_IP_URL, API_KEY, IP_ADDRESS);
+
+        StringRequest getLocationKey = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Store only 7 characters in the string.
+                        locationKey = Integer.parseInt(response.substring(20, 26));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MessageBoardActivity.this, "An error occurred while retrieving location info. The error is:\n" + error, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        StringRequest getWeatherDescription = new StringRequest(Request.Method.GET, String.format(Locale.getDefault(), GET_WEATHER_DESCRIPTION_URL, locationKey, url),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(getLocationKey);
+
     }
 
     // Code retrieved from https://itekblog.com/android-get-mobile-ip-address/
     private String getIP() {
+        String ip = "";
         try {
-            WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            int ipAddress = wifiInfo.getIpAddress();
-            return String.format(Locale.getDefault(), "%d.%d.%d.%d",
-                    (ipAddress & 0xff), (ipAddress >> 8 & 0xff),
-                    (ipAddress >> 16 & 0xff), (ipAddress >> 24 & 0xff));
-        } catch (Exception ex) {
-            Log.e("What went wrong when getting IP Address", ex.getMessage());
-            return null;
+            URL publicIP = new URL("http://checkip.amazonaws.com");
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    publicIP.openStream()));
+
+            ip = in.readLine(); //you get the IP as a String
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return ip;
     }
 
     private void readRFid() {

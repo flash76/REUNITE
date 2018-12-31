@@ -13,21 +13,23 @@
         <!-- We have android:required="false" so we can test an a standard Android Emulator -->
         <uses-library
                 android:name="com.google.android.things"
-                android:required="false"/>
+                android:required="true"/>
 
         <activity
                 android:name=".MessageBoardActivity"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.HOME" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.IOT_LAUNCHER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.IOT_LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".ProfileCreatorActivity" >

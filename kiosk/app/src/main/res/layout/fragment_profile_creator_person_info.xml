@@ -5,8 +5,7 @@
               android:layout_height="match_parent"
               tools:context=".ProfileCreatorPersonInfo"
               android:orientation="vertical"
-              android:gravity="center_horizontal"
-              android:theme="@style/AppTheme" >
+              android:gravity="center_horizontal">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -19,14 +18,21 @@
             android:layout_gravity="center"
             android:textSize="24sp"/>
 
-    <android.support.design.widget.TextInputLayout
+    <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/profile_creator_person_info_name_et"
+            android:hint="@string/profile_creator_person_info_name_et"
+            android:textSize="30sp"/>
 
-        <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="(Your Name)"
-                />
-    </android.support.design.widget.TextInputLayout>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:ems="10"
+            android:id="@+id/profile_creator_person_info_address_et"
+            android:textSize="30sp"/>
+
 </LinearLayout>

@@ -28,7 +28,7 @@ import java.util.Random;
  *
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
-public class ProfileCreatorActivity extends AppCompatActivity implements ProfileCreatorPersonInfo.OnFragmentInteractionListener {
+public class ProfileCreatorActivity extends Activity implements ProfileCreatorPersonInfo.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
