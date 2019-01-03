@@ -145,3 +145,6 @@ kiosk/.idea/misc.xml
 kiosk/.idea/workspace.xml
 kiosk/app/google-services.json
 kiosk/.idea/workspace.xml
+kiosk/app/.DS_Store
+.idea/modules.xml
+.idea/vcs.xml
