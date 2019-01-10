@@ -1,10 +1,15 @@
 package guavamangos.reuniteapp;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -30,10 +35,21 @@ import java.util.Random;
  */
 public class ProfileCreatorActivity extends Activity implements ProfileCreatorPersonInfo.OnFragmentInteractionListener {
 
+    private int[] profileCreatorScreens = {R.layout.fragment_profile_creator_person_info};
+
+    FragmentManager f = getFragmentManager();
+    FragmentTransaction transaction = f.beginTransaction();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_creator);
+
+        ImageButton profileCreatorForward = findViewById(R.id.profileCreatorForwardButton);
+        ImageButton profileCreatorBackward = findViewById(R.id.profileCreatorBackButton);
+
+        Fragment profileCreatorFragmentWindow = f.findFragmentById(R.id.profileCreatorFragmentWindow);
+
 
         String[] welcomeMessages = getResources().getStringArray(R.array.profile_creator_welcome_messages);
         String welcomeMessage = welcomeMessages[new Random().nextInt(welcomeMessages.length)];
@@ -44,6 +60,21 @@ public class ProfileCreatorActivity extends Activity implements ProfileCreatorPe
 
         profileCreatorLogo.setText(Html.fromHtml(getString(R.string.guavalogo)));
         profileCreatorWelcome.setText(welcomeMessage);
+
+        profileCreatorForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Change screen when button is clicked using transaction.replace()
+            }
+        });
+
+        profileCreatorBackward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Change stuff
+            }
+        });
+
     }
 
     private void writeRFID() {
