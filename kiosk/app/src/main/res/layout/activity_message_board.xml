@@ -42,32 +42,6 @@
             android:textColor="@android:color/background_light"/>
 
 
-
-    <ScrollView
-            android:layout_width="300dp"
-            android:layout_height="482dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/messageBoardDate"
-            app:layout_constraintVertical_bias="0.061"
-            android:id="@+id/scrollView2"
-            app:layout_constraintHorizontal_bias="0.494"
-            android:fillViewport="true">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-
-        </LinearLayout>
-    </ScrollView>
-
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,38 +79,52 @@
             android:textColor="@android:color/background_light"/>
 
     <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/messageBoardWeatherIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"
-            app:layout_constraintVertical_bias="0.904"
-            android:src="@drawable/weather_sunny"
-            app:layout_constraintHorizontal_bias="0.427"/>
+        android:id="@+id/messageBoardWeatherIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/weather_sunny"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.925" />
 
     <TextView
-            android:text="Temp"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:id="@+id/messageBoardWeatherTemperature"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="152dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:fontFamily="@font/varela"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="612dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintHorizontal_bias="0.99"
-            app:layout_constraintVertical_bias="0.416"
-            android:textColor="@android:color/background_light"/>
+        android:id="@+id/messageBoardWeatherTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/varela"
+        android:text="Temp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.993" />
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="guavamangos.reuniteapp.MessageBoardUpdatesFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/messageBoardWeatherIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/messageBoardDate" />
 
 </android.support.constraint.ConstraintLayout>

@@ -5,17 +5,16 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
-import android.view.textclassifier.TextLinks;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,19 +22,20 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.galarzaa.androidthings.Rc522;
+import com.google.android.things.pio.Gpio;
+import com.google.android.things.pio.PeripheralManager;
+import com.google.android.things.pio.SpiDevice;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
-import com.galarzaa.androidthings.Rc522;
-import com.google.android.things.pio.Gpio;
-import com.google.android.things.pio.PeripheralManager;
-import com.google.android.things.pio.SpiDevice;
+import guavamangos.reuniteapp.dummy.DummyContent;
 
 /**
  * Skeleton of an Android Things activity.
@@ -56,7 +56,7 @@ import com.google.android.things.pio.SpiDevice;
  *
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
-public class MessageBoardActivity extends Activity {
+public class MessageBoardActivity extends Activity implements MessageBoardUpdatesFragment.OnListFragmentInteractionListener {
 
     private Calendar calendar = Calendar.getInstance(Locale.getDefault());
 
@@ -85,9 +85,16 @@ public class MessageBoardActivity extends Activity {
     private String formattedMinute;
     private int locationKey = 0;
 
+    private RecyclerView messageBoardCardInfo;
+    private RecyclerView.Adapter messageBoardCardInfoAdapter;
+    private RecyclerView.LayoutManager messageBoardCardInfoManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String[] titleZ = {"Warning", "ALERT"};
+        String[] descriptionZ = {"Tempereatures are dropping.", "Severe storms ahead, please evacuate NOW"};
 
         IP_ADDRESS = getIP();
 
@@ -283,6 +290,11 @@ public class MessageBoardActivity extends Activity {
         AlertDialog alert = builder.create();
         alert.show();
         return alert;
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 
     private class RunRFIDInBackground extends AsyncTask<Void, Void, Void> {
