@@ -19,5 +19,5 @@ public class GButton extends Activity {
         gButton.setBackgroundDrawable(gradientDrawable);
     }
 
-    public Button createGButton(String text, Method onClickListener,  )
+//    public Button createGButton(String text, Method onClickListener,  )
 }
