@@ -25,4 +25,8 @@
     <string name="profile_creator_person_info_title_info">First, let\'s enter some basic information.</string>
     <string name="profile_creator_person_info_name_et">Your name</string>
     <string name="profile_creator_person_info_address_et">Address (optional)</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_creator_other_info_intructional_text">We need to know who you are looking for.</string>
 </resources>

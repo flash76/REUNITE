@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "744952086292",
+    "firebase_url": "https://guavamangos-reunite.firebaseio.com",
+    "project_id": "guavamangos-reunite",
+    "storage_bucket": "guavamangos-reunite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744952086292:android:fb3efd6cad02cb63",
+        "android_client_info": {
+          "package_name": "guavamangos.reuniteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744952086292-qeevvj82c6v3sfupdvks3pvolkf9puqs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "guavamangos.reuniteapp",
+            "certificate_hash": "c95f8da73b988bd3f2736d88c442d1f4eea15a82"
+          }
+        },
+        {
+          "client_id": "744952086292-kgmm6lnqnkcrdg5ag6a0t0fua68ho7i6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "guavamangos.reuniteapp",
+            "certificate_hash": "19f2a917edc71b63c3b7bd77c805281d9963c712"
+          }
+        },
+        {
+          "client_id": "744952086292-pspbsrr6r8n6vrmjgobu64aeehg7gkl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFNxmEfGOtNjRsnz2QgTIeOwe4ji5YkAs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744952086292-pspbsrr6r8n6vrmjgobu64aeehg7gkl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
