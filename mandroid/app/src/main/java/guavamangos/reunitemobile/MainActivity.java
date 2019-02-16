@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Code here to handle failiure
-                        Toast.makeText(MainActivity.this, "post creation failure", Toast.LENGTH_SHORT).show();
+                        // Code here to handle failure
+                        Toast.makeText(MainActivity.this, "post creation failure", Toast.LENGTH_LONG).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(MainActivity.this, "post creation successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "post creation successful", Toast.LENGTH_LONG).show();
                     }
                 });
             }
