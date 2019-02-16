@@ -52,15 +52,12 @@ local.properties
 */freeline.py
 */freeline/
 */freeline_project_description.json
-
 # fastlane
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
 */fastlane/test_output
 */fastlane/readme.md
-
-
 */local.properties
 */.idea/libraries
 */.idea/modules.xml
@@ -71,11 +68,8 @@ local.properties
 */.externalNativeBuild
 
 # Xcode
-#
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
 ## Build generated
-*/build/
 */DerivedData/
 
 ## Various settings
@@ -105,7 +99,6 @@ local.properties
 */playground.xcworkspace
 
 # Swift Package Manager
-#
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 # Packages/
 # Package.pins
@@ -113,42 +106,28 @@ local.properties
 */.build/
 
 # CocoaPods
-#
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
 # */Pods/
 
 # Carthage
-#
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
-
 */Carthage/Build
 
-# fastlane
-#
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
-
-*/fastlane/report.xml
-*/fastlane/Preview.html
 */fastlane/screenshots/**/*.png
-*/fastlane/test_output
 .DS_Store
 .idea/encodings.xml
 .idea/workspace.xml
 kiosk/.idea/misc.xml
 kiosk/.idea/workspace.xml
 kiosk/app/google-services.json
-kiosk/.idea/workspace.xml
 kiosk/app/.DS_Store
 .idea/modules.xml
 .idea/vcs.xml
-kiosk/.idea/misc.xml
-kiosk/.idea/workspace.xml
-kiosk/.idea/misc.xml
 mandroid/app/google-services.json
