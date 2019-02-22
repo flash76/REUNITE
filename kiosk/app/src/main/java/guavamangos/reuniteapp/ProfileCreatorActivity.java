@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -33,12 +34,9 @@ import java.util.Random;
  *
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
-public class ProfileCreatorActivity extends Activity implements ProfileCreatorPersonInfo.OnFragmentInteractionListener {
+public class ProfileCreatorActivity extends Activity implements ProfileCreatorPersonInfo.OnFragmentInteractionListener, ProfileCreatorOtherInfo.OnFragmentInteractionListener {
 
-    private int[] profileCreatorScreens = {R.layout.fragment_profile_creator_person_info};
-
-    FragmentManager f = getFragmentManager();
-    FragmentTransaction transaction = f.beginTransaction();
+    private int profileCreatorScreensIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,13 @@ public class ProfileCreatorActivity extends Activity implements ProfileCreatorPe
         ImageButton profileCreatorForward = findViewById(R.id.profileCreatorForwardButton);
         ImageButton profileCreatorBackward = findViewById(R.id.profileCreatorBackButton);
 
-        Fragment profileCreatorFragmentWindow = f.findFragmentById(R.id.profileCreatorFragmentWindow);
+        final Fragment profileCreatorPersonInfo = new ProfileCreatorPersonInfo();
+        final Fragment profileCreatorOtherInfo = new ProfileCreatorPersonInfo();
+
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+        final android.app.Fragment[] profileCreatorScreens = {profileCreatorPersonInfo, profileCreatorOtherInfo};
+
 
 
         String[] welcomeMessages = getResources().getStringArray(R.array.profile_creator_welcome_messages);
@@ -61,10 +65,15 @@ public class ProfileCreatorActivity extends Activity implements ProfileCreatorPe
         profileCreatorLogo.setText(Html.fromHtml(getString(R.string.guavalogo)));
         profileCreatorWelcome.setText(welcomeMessage);
 
+        ft.replace(R.id.profileCreatorFragmentWindow, profileCreatorScreens[profileCreatorScreensIndex]);
+
         profileCreatorForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO: Change screen when button is clicked using transaction.replace()
+                ft.replace(R.id.profileCreatorFragmentWindow, profileCreatorScreens[profileCreatorScreensIndex + 1]);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -72,6 +81,9 @@ public class ProfileCreatorActivity extends Activity implements ProfileCreatorPe
             @Override
             public void onClick(View v) {
                 // TODO: Change stuff
+                ft.replace(R.id.profileCreatorFragmentWindow, profileCreatorScreens[profileCreatorScreensIndex - 1]);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
