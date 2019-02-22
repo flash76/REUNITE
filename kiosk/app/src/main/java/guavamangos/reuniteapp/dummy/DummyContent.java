@@ -1,5 +1,13 @@
 package guavamangos.reuniteapp.dummy;
 
+import android.support.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +20,10 @@ import java.util.Map;
  * TODO: Replace all uses of this class before publishing your app.
  */
 public class DummyContent {
+
+    private static String titleContent = "this will be replaced";
+
+    private static String messageContent = "this will also be replaced";
 
     /**
      * An array of sample (dummy) items.
@@ -38,7 +50,31 @@ public class DummyContent {
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("message");
+
+        final String message = "Message:";
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                titleContent = dataSnapshot.getValue(String.class).substring(
+                        6,
+                        dataSnapshot.getValue(String.class).indexOf(message));
+
+                messageContent = dataSnapshot.getValue(String.class).substring(
+                        dataSnapshot.getValue(String.class).indexOf(message),
+                        dataSnapshot.getValue(String.class).length());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return new DummyItem(String.valueOf(1), titleContent, makeDetails(position));
+        // TODO: Create a new helper method and add to the RecyclerView a message TextView
     }
 
     private static String makeDetails(int position) {

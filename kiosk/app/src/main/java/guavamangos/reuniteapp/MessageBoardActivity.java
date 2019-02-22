@@ -127,29 +127,11 @@ public class MessageBoardActivity extends Activity implements MessageBoardUpdate
 
         messageBoardTime.setText("LALALALA");
 
-        if (minute > 0 && minute < 10) {
-            int tmp = minute;
-            int[] newMinute = new int[2];
-            newMinute[0] = 0;
-            newMinute[1] = tmp;
+        messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time, hour, minute)));
 
-            formattedMinute = String.format(Locale.getDefault(), "%1$d %2$d", newMinute[0], newMinute[1]);
-        }
-
-        if (hour >= 13) {
-            if (minute == 0) {
-                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_00_minute, hour - 12)));
-            } else {
-                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_string_minute, hour - 12, formattedMinute)));
-            }
+        if (hour > 11) {
             messageBoardTime.append(" pm");
         } else {
-            if (minute == 0) {
-                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_00_minute, hour)));
-            } else {
-                messageBoardTime.setText(Html.fromHtml(getString(R.string.message_board_time_string_minute, hour, formattedMinute)));
-
-            }
             messageBoardTime.append(" am");
         }
 
