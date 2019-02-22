@@ -31,6 +31,6 @@
     <string name="profile_creator_other_info_intructional_text">We need to know who you are looking for.</string>
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_account">Account</string>
     <string name="title_notifications">Notifications</string>
 </resources>
