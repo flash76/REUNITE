@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="KioskTheme" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
+</resources>
