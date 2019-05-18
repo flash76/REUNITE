@@ -6,7 +6,12 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Html;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +21,11 @@ import com.google.android.things.device.TimeManager;
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.PeripheralManager;
 import com.google.android.things.pio.SpiDevice;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -72,12 +82,16 @@ public class HomeActivity extends Activity {
     boolean result = false;
     private Intent profileActivityIntent;
 
+    private FirebaseDatabase fdb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         profileActivityIntent = new Intent(HomeActivity.this, ProfileActivity.class);
+
+        fdb = FirebaseDatabase.getInstance();
 
         // Instantiate RFID stuff
         PeripheralManager pioService = PeripheralManager.getInstance();
@@ -91,7 +105,7 @@ public class HomeActivity extends Activity {
 
         // Set up device for user use (timezone, screen rotation)
         setTimeZone("America/New_York");
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
 
 
         guavamangosLogo = findViewById(R.id.guavamangosLogo);
@@ -128,6 +142,41 @@ public class HomeActivity extends Activity {
         // (https://stackoverflow.com/questions/55583075/how-do-i-get-an-image-from-a-remote-source-url-and-show-it-in-imageview - the question I asked;) )
         Picasso.get().load("https://source.unsplash.com/1080x1920/?dark-nature").into(kioskWallpaper);
 
+        DatabaseReference weather = fdb.getReference().child("weather");
+        Gpio mLedGpio;
+        try {
+            mLedGpio = pioService.openGpio(BoardDefaults.getGPIOForLED());
+            mLedGpio.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        weather.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Toast.makeText(HomeActivity.this, s, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
